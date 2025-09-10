@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EmployeeLeaveManagementSystem.Models
+namespace EmployeeLeaveManagementSystem.Models.DTOs
 {
-    public class LeaveDTO
+    public class LeaveRequestDTO
     {
         public int LeaveBalanceID { get; set; }
         public int EmployeeID { get; set; }

@@ -1,6 +1,6 @@
-﻿namespace EmployeeLeaveManagementSystem.Models
+﻿namespace EmployeeLeaveManagementSystem.Models.DTOs
 {
-    public class EmployeeDTO
+    public class UserDTO
     {
         public string Name { get; set; }
         public string Email { get; set; }

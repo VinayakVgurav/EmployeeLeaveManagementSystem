@@ -1,4 +1,4 @@
-using EmployeeLeaveManagementSystem.Models;
+using EmployeeLeaveManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

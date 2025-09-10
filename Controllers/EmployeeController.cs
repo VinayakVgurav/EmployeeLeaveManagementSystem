@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeLeaveManagementSystem.Controllers
 {
-    public class EmployeeController : Controller
+    [ApiController]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class EmployeeController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        private readonly ILeaveService _leaveService;
+        
     }
 }

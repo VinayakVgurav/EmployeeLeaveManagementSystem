@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EmployeeLeaveManagementSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace EmployeeLeaveManagementSystem.Models
+namespace EmployeeLeaveManagementSystem.Data
 {
     public class Mydbcontext:DbContext
     {
