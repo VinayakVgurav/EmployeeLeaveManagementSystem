@@ -8,12 +8,14 @@ namespace EmployeeLeaveManagementSystem.Models
         [Key]
         public int LeaveBalanceID { get; set; }
 
-        [ForeignKey ("Employee")]
+        [Required,ForeignKey("Employee")]
         public int EmployeeID { get; set; }
-        public int AnnualLeave { get; set; }
-        public int SickLeave { get; set; }
-        public int CasualLeave { get; set; }
-        public int OtherLeave { get; set; }
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }  //navigatn prperty=LeaveBalance has a relationship with emp table..corresponds to foreign key
+
+        public int AnnualLeave { get; set; } = 20;
+        public int SickLeave { get; set; } = 10;
+        public int CasualLeave { get; set; } = 5;
+        public int OtherLeave { get; set; } = 0;
+        
     }
 }

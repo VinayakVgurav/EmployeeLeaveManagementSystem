@@ -4,12 +4,9 @@ namespace EmployeeLeaveManagementSystem.Models.DTOs
 {
     public class LeaveRequestDTO
     {
-        public int LeaveBalanceID { get; set; }
-        public int EmployeeID { get; set; }
-        public int AnnualLeave { get; set; }
-        public int SickLeave { get; set; }
-        public int CasualLeave { get; set; }
-        public int OtherLeave { get; set; }
-        public Employee Employee { get; set; }
+        public string LeaveType { get; set; } = string.Empty;
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Reason { get; set; } = string.Empty;
     }
 }

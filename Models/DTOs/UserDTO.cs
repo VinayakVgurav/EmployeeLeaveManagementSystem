@@ -2,11 +2,10 @@
 {
     public class UserDTO
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Department { get; set; }
-        public string Designation { get; set; }
-        public string Role { get; set; }
+        public int EmployeeID { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Role { get; set; } = "Employee";
+        public string Token { get; set; } = string.Empty;
     }
 }
