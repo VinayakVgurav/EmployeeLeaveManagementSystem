@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using EmployeeLeaveManagementSystem.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Claims;
@@ -46,3 +49,21 @@ namespace EmployeeLeaveManagementSystem.Helpers
         }
     }
 }
+
+
+//Claims → Store user info inside token (e.g., Name, Role).
+
+//Key → Secret string (from appsettings.json) used to sign the token.
+
+//SigningCredentials → Defines algorithm (HmacSha256) + key.
+
+//JwtSecurityToken → Creates the actual JWT object.
+
+//WriteToken → Converts it into a string to return to client.
+
+
+////So when user logs in:
+
+//AuthService calls JwtHelper.GenerateToken(user.Name, user.Role, _config)
+
+//It returns a JWT token string → which the client uses in Authorization: Bearer<token> header.
