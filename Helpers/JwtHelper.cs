@@ -1,6 +1,6 @@
 ﻿namespace EmployeeLeaveManagementSystem.Helpers
 {
-    public class JwtHelper
+    public static class JwtHelper
     {
     }
 }

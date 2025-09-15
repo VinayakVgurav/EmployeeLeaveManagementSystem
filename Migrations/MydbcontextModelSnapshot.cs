@@ -57,6 +57,18 @@ namespace EmployeeLeaveManagementSystem.Migrations
                     b.HasKey("EmployeeID");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            EmployeeID = 1,
+                            Department = "HR",
+                            Designation = "Administrator",
+                            Email = "admin@leave.com",
+                            Name = "System Admin",
+                            Password = "AQAAAAEAACcQAAAAEKrOrrnN6sN2uZfLzJfMFRU2Z5c7FgCeNQ==",
+                            Role = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("EmployeeLeaveManagementSystem.Models.LeaveBalance", b =>
@@ -84,9 +96,21 @@ namespace EmployeeLeaveManagementSystem.Migrations
 
                     b.HasKey("LeaveBalanceID");
 
-                    b.HasIndex("EmployeeID");
+                    b.HasIndex("EmployeeID")
+                        .IsUnique();
 
                     b.ToTable("LeaveBalances");
+
+                    b.HasData(
+                        new
+                        {
+                            LeaveBalanceID = 1,
+                            AnnualLeave = 20,
+                            CasualLeave = 5,
+                            EmployeeID = 1,
+                            OtherLeave = 0,
+                            SickLeave = 10
+                        });
                 });
 
             modelBuilder.Entity("EmployeeLeaveManagementSystem.Models.LeaveRequest", b =>
@@ -135,8 +159,8 @@ namespace EmployeeLeaveManagementSystem.Migrations
             modelBuilder.Entity("EmployeeLeaveManagementSystem.Models.LeaveBalance", b =>
                 {
                     b.HasOne("EmployeeLeaveManagementSystem.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeID")
+                        .WithOne("LeaveBalance")
+                        .HasForeignKey("EmployeeLeaveManagementSystem.Models.LeaveBalance", "EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -146,12 +170,19 @@ namespace EmployeeLeaveManagementSystem.Migrations
             modelBuilder.Entity("EmployeeLeaveManagementSystem.Models.LeaveRequest", b =>
                 {
                     b.HasOne("EmployeeLeaveManagementSystem.Models.Employee", "Employee")
-                        .WithMany()
+                        .WithMany("LeaveRequests")
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("EmployeeLeaveManagementSystem.Models.Employee", b =>
+                {
+                    b.Navigation("LeaveBalance");
+
+                    b.Navigation("LeaveRequests");
                 });
 #pragma warning restore 612, 618
         }

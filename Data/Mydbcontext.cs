@@ -1,4 +1,5 @@
 ﻿using EmployeeLeaveManagementSystem.Models;
+
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,9 @@ namespace EmployeeLeaveManagementSystem.Data
 
 
         // OnModelCreating is a special EF Core method.
+        //OnModelCreating()=place where you tell EF Core how to build the database from your models.
         // It runs when the model (tables) are being created.
+        //ModelBuilder=tells EF Core how to build the database schema and insert seed data.
         // We can configure extra rules and also add seed data here.
         //Seed Data=Seed data means initial/default data that EF Core automatically inserts into your database when it is created or migrated.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,22 +33,19 @@ namespace EmployeeLeaveManagementSystem.Data
 
             //Create an Admin user for the system (seed data).
             //Whenever you create the database, insert this Admin user into the Employees table automatically.
-            var admin = new Employee
+            //Seed Admin User with fixed password hash (for "Admin@123")
+            modelBuilder.Entity<Employee>().HasData(new Employee
             {
-               EmployeeID = 1,
-               Name = "System Admin",
-               Email = "admin@leave.com",
-               Department = "Hr",
-               Designation = "Administrator",
-               Role = "Admin"
-            };
+                EmployeeID = 1,
+                Name = "System Admin",
+                Email = "admin@leave.com",
+                Department = "HR",
+                Designation = "Administrator",
+                Role = "Admin",
 
-            //Hash the password (instead of storing plain text).
-            var hasher = new PasswordHasher<Employee>();
-            admin.Password = hasher.HashPassword(admin, "Admin@123");
-
-            //Tell EF Core to insert this Admin into Employees table during migration.
-            modelBuilder.Entity<Employee>().HasData(admin);
+                //Fixed hash string (generated once using PasswordHasher)
+                Password = "AQAAAAEAACcQAAAAEKrOrrnN6sN2uZfLzJfMFRU2Z5c7FgCeNQ=="
+            });
 
             //Also give the Admin some default leave balance (seed data).
             modelBuilder.Entity<LeaveBalance>().HasData(new LeaveBalance

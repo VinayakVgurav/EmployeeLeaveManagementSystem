@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EmployeeLeaveManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -78,10 +78,21 @@ namespace EmployeeLeaveManagementSystem.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "EmployeeID", "Department", "Designation", "Email", "Name", "Password", "Role" },
+                values: new object[] { 1, "HR", "Administrator", "admin@leave.com", "System Admin", "AQAAAAEAACcQAAAAEKrOrrnN6sN2uZfLzJfMFRU2Z5c7FgCeNQ==", "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "LeaveBalances",
+                columns: new[] { "LeaveBalanceID", "AnnualLeave", "CasualLeave", "EmployeeID", "OtherLeave", "SickLeave" },
+                values: new object[] { 1, 20, 5, 1, 0, 10 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_LeaveBalances_EmployeeID",
                 table: "LeaveBalances",
-                column: "EmployeeID");
+                column: "EmployeeID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_LeaveRequests_EmployeeID",

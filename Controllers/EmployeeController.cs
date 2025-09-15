@@ -8,7 +8,7 @@ namespace EmployeeLeaveManagementSystem.Controllers
     [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-        private readonly ILeaveService _leaveService;
+       
         
     }
 }
