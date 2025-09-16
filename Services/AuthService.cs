@@ -4,9 +4,14 @@ using EmployeeLeaveManagementSystem.Models;
 using EmployeeLeaveManagementSystem.Models.DTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace EmployeeLeaveManagementSystem.Services
 {
+     //AuthService.cs is the authentication service in your project
+     // — its role is to check if a user’s email and password are correct, and if valid, generate a JWT token for login.
+     //In simple words:Role → Handles login logic(verify user + issue JWT).
+    //Use → Controllers call AuthService so they don’t need to write database queries or token code themselves.
     public class AuthService : IAuthService
     {
         private readonly Mydbcontext _context;    // EF DbContext used to access database tables
