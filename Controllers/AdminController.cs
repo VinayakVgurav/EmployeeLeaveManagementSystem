@@ -2,11 +2,10 @@
 
 namespace EmployeeLeaveManagementSystem.Controllers
 {
-    public class AdminController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AdminController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }
