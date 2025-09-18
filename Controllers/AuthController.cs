@@ -1,4 +1,5 @@
 ﻿using EmployeeLeaveManagementSystem.Controllers;
+using EmployeeLeaveManagementSystem.Models;
 using EmployeeLeaveManagementSystem.Models.DTOs;
 using EmployeeLeaveManagementSystem.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,6 @@ namespace EmployeeLeaveManagementSystem.Controllers
 
         // POST: api/auth/login→ Endpoint for user login
         [HttpPost("login")]
-
         public async Task<IActionResult> Login([FromBody] LoginDTO dto)
         {
             //Calls AuthService.LoginAsync to verify credentials and get JWT token
@@ -34,3 +34,12 @@ namespace EmployeeLeaveManagementSystem.Controllers
 }
 //AuthController.cs exposes an API endpoint (POST /api/auth/login) that uses AuthService to check user credentials
 //and return a JWT token for authentication.
+
+//AuthController → handles login and issues JWT tokens.
+//EmployeeController → manages employees (CRUD operations).
+//AdminController → lets Admin approve/reject leave requests and check leave balances.
+
+//These three match the typical separation of concerns:
+//Auth = authentication
+//Employee = employee management
+//Admin = admin-only operations
