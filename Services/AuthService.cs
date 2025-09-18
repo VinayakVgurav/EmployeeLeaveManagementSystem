@@ -28,7 +28,7 @@ namespace EmployeeLeaveManagementSystem.Services
         }
 
         // LoginAsync: verifies user credentials and returns a JWT token string if valid, otherwise null
-        public async Task<string> loginAsync(LoginDTO dto)
+        public async Task<string> LoginAsync(LoginDTO dto)
         {
             // Query the Employees table for a user with the provided email (async, non-blocking)
             var user = await _context.Employees.FirstOrDefaultAsync(e=>e.Email == dto.Email);
@@ -42,10 +42,10 @@ namespace EmployeeLeaveManagementSystem.Services
             return JwtHelper.GenerateToken(user.Name, user.Role, _config);
         }
 
-        public Task<string?> LoginAsync(LoginDTO dto)
+       /* public Task<string?> LoginAsync(LoginDTO dto)
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }
 
