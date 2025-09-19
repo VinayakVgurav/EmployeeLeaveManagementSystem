@@ -44,7 +44,7 @@ namespace EmployeeLeaveManagementSystem.Data
                 Role = "Admin",
 
                 //Fixed hash string (generated once using PasswordHasher)
-                Password = "AQAAAAEAACcQAAAAEKrOrrnN6sN2uZfLzJfMFRU2Z5c7FgCeNQ=="
+                Password = "AQAAAAIAAYagAAAAECMopdpWbwRzI99sB1BjWHXJHveHQwIhg80hHtMVmKc7i9KeYS9+Gid9CvVZD2KwUQ=="
             });
 
             //Also give the Admin some default leave balance (seed data).

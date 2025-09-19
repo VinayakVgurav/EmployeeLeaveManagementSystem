@@ -63,8 +63,19 @@ namespace EmployeeLeaveManagementSystem.Controllers
 
         //POST: api/employee
         [HttpPost]
-        public async Task<ActionResult<Employee>> AddEmployee(Employee emp)
+        public async Task<ActionResult<Employee>> AddEmployee(EmployeeCreateDTO dto)
         {
+            var emp = new Employee
+            {
+                Name = dto.Name,
+                Email = dto.Email,
+                Password = dto.Password,
+                Department = dto.Department,
+                Designation = dto.Designation,
+                Role = dto.Role
+                // LeaveBalance and LeaveRequests are null by default
+            };
+
             _context.Employees.Add(emp);      //Add new employee entity to DbContext
             await _context.SaveChangesAsync();//Save changes to DB
 
@@ -74,20 +85,21 @@ namespace EmployeeLeaveManagementSystem.Controllers
 
         //PUT: api/employee/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEmployee(int id,Employee emp)
+        public async Task<IActionResult> UpdateEmployee(int id, EmployeeUpdateDTO dto)
         {
-            var existing = await _context.Employees.FindAsync(id);  //Look up employee by ID
-            if (existing == null) return NotFound();
+            var emp = await _context.Employees.FindAsync(id);
+            if (emp == null)
+                return NotFound();
 
-            //Update fields of existing employee with new values
-            existing.Name = emp.Name;
-            existing.Email = emp.Email;
-            existing.Role = emp.Role;
-            existing.Department = emp.Department;
-            existing.Designation = emp.Designation;
+            // Update only the fields from DTO
+            emp.Name = dto.Name;
+            emp.Email = dto.Email;
+            emp.Department = dto.Department;
+            emp.Designation = dto.Designation;
+            emp.Role = dto.Role;
 
-            await _context.SaveChangesAsync();    //Save changes to DB
-            return NoContent();
+            await _context.SaveChangesAsync();
+            return NoContent(); // 204 indicates success with no body
 
         }
 
